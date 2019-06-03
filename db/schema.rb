@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_06_03_122332) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "price"
-    t.integer "warehouse_id"
+    t.bigint "warehouse_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["warehouse_id"], name: "index_items_on_warehouse_id"
@@ -28,4 +31,5 @@ ActiveRecord::Schema.define(version: 2019_06_03_122332) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "items", "warehouses"
 end
