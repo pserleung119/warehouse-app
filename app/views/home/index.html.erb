@@ -1,26 +1,26 @@
-<div class="p-5">
+<div class="p-3 p-lg-5">
   <section>
     <h3>Items</h3>
-    <table class="table table-hover p-2">
+    <table class="table table-hover p-lg-2">
       <thead class="thead-dark">
         <tr>
-          <th class="px-2">Name</th>
-          <th class="px-2">Price</th>
-          <th class="px-2">Warehouse</th>
-          <th class="px-2"></th>
+          <th class="px-lg-2" style="width: 35%">Name</th>
+          <th class="px-lg-2" style="width: 15%">Price</th>
+          <th class="px-lg-2" style="width: 25%">Warehouse</th>
+          <th class="px-lg-2" style="width: 10%"></th>
         </tr>
       </thead>
       <tbody>
       <% @items.each do |item| %>
         <tr target-id="<%= item.id %>">
-          <td class="px-2 item-name" target-id="<%= item.id %>"><%= item.name %></td>
-          <td class="px-2 item-price" target-id="<%= item.id %>"><%= item.price %></td>
-          <td class="px-2 item-warehouse" target-id="<%= item.id %>"><%= item.warehouse_name %></td>
-          <td class="text-center">
-            <button type="button" target-id="<%= item.id %>" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editItemModal">
+          <td class="px-lg-2 item-name" target-id="<%= item.id %>"><%= item.name %></td>
+          <td class="px-lg-2 item-price" target-id="<%= item.id %>"><%= item.price %></td>
+          <td class="px-lg-2 item-warehouse" target-id="<%= item.id %>"><%= item.warehouse_name %></td>
+          <td class="d-flex text-center">
+            <button type="button" target-id="<%= item.id %>" class="btn btn-primary mx-1 mx-lg-3 edit-btn" data-toggle="modal" data-target="#editItemModal">
               Edit
             </button>
-            <button type="button" target-id="<%= item.id %>" class="btn btn-danger delete-btn">Delete</button>
+            <button type="button" target-id="<%= item.id %>" class="btn btn-danger mx-1 mx-lg-3 delete-btn">Delete</button>
           </td>
         </tr>
       <% end %>
