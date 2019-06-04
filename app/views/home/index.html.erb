@@ -13,10 +13,13 @@
       <tbody>
       <% @items.each do |item| %>
         <tr target-id="<%= item.id %>">
-          <td class="px-2" target-id="<%= item.id %>"><%= item.name %></td>
-          <td class="px-2" target-id="<%= item.id %>"><%= item.price %></td>
-          <td class="px-2" target-id="<%= item.id %>"><%= item.warehouse_name %></td>
+          <td class="px-2 item-name" target-id="<%= item.id %>"><%= item.name %></td>
+          <td class="px-2 item-price" target-id="<%= item.id %>"><%= item.price %></td>
+          <td class="px-2 item-warehouse" target-id="<%= item.id %>"><%= item.warehouse_name %></td>
           <td class="text-center">
+            <button type="button" target-id="<%= item.id %>" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editItemModal">
+              Edit
+            </button>
             <button type="button" target-id="<%= item.id %>" class="btn btn-danger delete-btn">Delete</button>
           </td>
         </tr>
@@ -30,7 +33,7 @@
     Add New Item
   </button>
 
-  <!-- Modal -->
+  <!-- Add Item Modal -->
   <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -58,6 +61,39 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" id="add-item">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Item Modal -->
+  <div class="modal fade" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="editItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editItemModalLabel">Edit Item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Name</span>
+            </div>
+            <input type="text" aria-label="Item Name" class="form-control" id="edit-input-name">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span class="input-group-text">¥</span>
+            </div>
+            <input type="integer" class="form-control" aria-label="JPY" id="edit-input-price">
+          </div>
+          <p class="small text-danger">*Price over 5000JPY will be stored in Roppongi, otherwise in Shinjuku.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="edit-item" target-id="">Edit</button>
         </div>
       </div>
     </div>

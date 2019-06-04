@@ -18,6 +18,30 @@ $(document).ready(function() {
     })
   })
 
+  $('.edit-btn').on('click', (event) => {
+    $('#edit-item').attr('target-id', $(event.target).attr('target-id'));
+  })
+
+  $('#edit-item').on('click', (event) => {
+    const id = $(event.target).attr('target-id');
+    $.ajax({
+      url : `home/update/${id}`,
+      type : 'PATCH',
+      data : {
+        authenticity_token : $('meta[name=csrf-token]').attr('content'),
+        name : $('#edit-input-name').val(),
+        price : $('#edit-input-price').val()
+      }
+    })
+    .done((data) => {
+      $('.modal').modal('hide');
+      updateData(data);
+    })
+    .fail((data) => {
+      console.log(data);
+    })
+  })
+
   $('.delete-btn').on('click', (event) => {
     if (!window.confirm("Are you sure?")) {
       return;
@@ -50,5 +74,11 @@ $(document).ready(function() {
 
   destroyData = (id) => {
     $(`tr[target-id="${id}"]`).remove();
+  }
+
+  updateData = (data) => {
+    $(`.item-name[target-id="${data.id}"]`).html(data.name);
+    $(`.item-price[target-id="${data.id}"]`).html(data.price);
+    $(`.item-warehouse[target-id="${data.id}"]`).html(data.warehouse_name);
   }
 });
