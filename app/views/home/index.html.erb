@@ -7,34 +7,35 @@
           <th class="px-2">Name</th>
           <th class="px-2">Price</th>
           <th class="px-2">Warehouse</th>
+          <th class="px-2"></th>
         </tr>
       </thead>
       <tbody>
       <% @items.each do |item| %>
-        <tr>
+        <tr target-id="<%= item.id %>">
           <td class="px-2" target-id="<%= item.id %>"><%= item.name %></td>
           <td class="px-2" target-id="<%= item.id %>"><%= item.price %></td>
           <td class="px-2" target-id="<%= item.id %>"><%= item.warehouse_name %></td>
+          <td class="text-center">
+            <button type="button" target-id="<%= item.id %>" class="btn btn-danger delete-btn">Delete</button>
+          </td>
         </tr>
       <% end %>
       </tbody>
     </table>
-    <ul>
-
-    </ul>
   </section>
 
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addItemModal">
     Add New Item
   </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Item</h5>
+          <h5 class="modal-title" id="addItemModalLabel">New Item</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

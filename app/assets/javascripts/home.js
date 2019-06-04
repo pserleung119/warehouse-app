@@ -18,6 +18,26 @@ $(document).ready(function() {
     })
   })
 
+  $('.delete-btn').on('click', (event) => {
+    if (!window.confirm("Are you sure?")) {
+      return;
+    }
+    const id = $(event.target).attr('target-id');
+    $.ajax({
+      url : `home/destroy/${id}`,
+      type : 'DELETE',
+      data : {
+        authenticity_token : $('meta[name=csrf-token]').attr('content')
+      }
+    })
+    .done((result) => {
+      destroyData(id);
+    })
+    .fail((data) => {
+      console.log(data);
+    })
+  })
+
   appendNewData = (data) => {
     $('tbody').append(`
       <tr>
@@ -26,5 +46,9 @@ $(document).ready(function() {
         <td class="px-2" target-id="${data.id}">${data.warehouse_name}</td>
       </tr>
     `)
+  }
+
+  destroyData = (id) => {
+    $(`tr[target-id="${id}"]`).remove();
   }
 });

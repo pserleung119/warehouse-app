@@ -10,15 +10,14 @@ class HomeController < ApplicationController
       price: params[:price],
       warehouse_id: params[:price].to_i < 5000 ? Warehouse.where(name: 'Shinjuku').first.id : Warehouse.where(name: 'Roppongi').first.id
     )
-
     warehouse_name = item.warehouse_name
 
     render :json => {id: item.id, name: item.name, price: item.price, warehouse_name: warehouse_name}
   end
 
-  def update
-  end
-
   def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    render :json => true
   end
 end
